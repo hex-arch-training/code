@@ -8,16 +8,12 @@
         <version>${revision}</version>
     </parent>
     <groupId>hexarch.dms</groupId>
-    <artifactId>preparation</artifactId>
+    <artifactId>shared</artifactId>
     <version>${revision}</version>
-    <name>Preparation</name>
+    <name>Shared kernel</name>
     <packaging>pom</packaging>
 
     <modules>
-        <module>adapter-in-web</module>
-        <module>adapter-out-db</module>
-        <module>adapter-out-verification</module>
-        <module>application</module>
         <module>domain</module>
     </modules>
 </project>

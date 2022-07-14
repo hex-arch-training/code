@@ -1,6 +1,7 @@
 package hexarch.dms.preparation.domain;
 
 import hexarch.dms.preparation.domain.converters.RevisionContentConverter;
+import hexarch.dms.preparation.domain.converters.RevisionStatusConverter;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,12 +23,24 @@ public class Revision {
     @Convert(converter = RevisionContentConverter.class)
     private RevisionContent content;
 
+    @Column(nullable = false)
+    @Convert(converter = RevisionStatusConverter.class)
+    private RevisionStatus status;
+
     @ManyToOne(cascade = CascadeType.ALL)
     private Document document;
+
+    public void lock() {
+        if (status != RevisionStatus.EDITABLE) {
+            throw new RevisionNotEditableException(id, status);
+        }
+        status = RevisionStatus.LOCKED;
+    }
 
     public static Revision createNew(DocumentTitle title, RevisionContent content) {
         final var revision = new Revision();
         revision.content = content;
+        revision.status = RevisionStatus.EDITABLE;
         revision.document = Document.createNew(title);
         return revision;
     }
@@ -35,6 +48,8 @@ public class Revision {
     public static Revision createNewAndAddToExistingDocument(Document document, RevisionContent content) {
         final var revision = new Revision();
         revision.content = content;
+
+        revision.status = RevisionStatus.EDITABLE;
         revision.document = document;
         return revision;
     }

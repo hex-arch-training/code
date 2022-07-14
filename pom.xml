@@ -37,8 +37,9 @@
 	</properties>
 
 	<modules>
+		<module>shared</module>
 		<module>preparation</module>
-<!--		<module>verification</module>-->
+		<module>verification</module>
 		<module>configuration</module>
 	</modules>
 
