@@ -43,15 +43,15 @@
             <artifactId>adapter-out-db</artifactId>
             <version>${revision}</version>
         </dependency>
-        <dependency>
-            <groupId>hexarch.dms.preparation</groupId>
-            <artifactId>adapter-out-verification</artifactId>
-            <version>${revision}</version>
-        </dependency>
         <!-- Verification -->
         <dependency>
             <groupId>hexarch.dms.verification</groupId>
             <artifactId>adapter-in-web</artifactId>
+            <version>${revision}</version>
+        </dependency>
+        <dependency>
+            <groupId>hexarch.dms.verification</groupId>
+            <artifactId>adapter-in-event</artifactId>
             <version>${revision}</version>
         </dependency>
         <dependency>
