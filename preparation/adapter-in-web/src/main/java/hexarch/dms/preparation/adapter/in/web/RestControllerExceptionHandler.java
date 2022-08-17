@@ -1,5 +1,6 @@
 package hexarch.dms.preparation.adapter.in.web;
 
+import hexarch.dms.preparation.domain.RevisionNotEditableException;
 import hexarch.dms.preparation.domain.ValidationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -11,9 +12,9 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 @ControllerAdvice
 public class RestControllerExceptionHandler extends ResponseEntityExceptionHandler {
-    @ExceptionHandler(value = {ValidationException.class})
-    public ResponseEntity<Object> handleValidationException(ValidationException validationException, WebRequest request) {
-        return handleExceptionInternal(validationException, validationException.getMessage(),
+    @ExceptionHandler(value = {ValidationException.class, RevisionNotEditableException.class})
+    public ResponseEntity<Object> handleValidationException(RuntimeException exception, WebRequest request) {
+        return handleExceptionInternal(exception, exception.getMessage(),
                 new HttpHeaders(), HttpStatus.NOT_ACCEPTABLE, request);
     }
 }

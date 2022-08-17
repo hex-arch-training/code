@@ -4,13 +4,13 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>hexarch.dms</groupId>
-        <artifactId>preparation</artifactId>
+        <artifactId>verification</artifactId>
         <version>${revision}</version>
     </parent>
-    <groupId>hexarch.dms.preparation</groupId>
+    <groupId>hexarch.dms.verification</groupId>
     <artifactId>application</artifactId>
     <version>${revision}</version>
-    <name>Preparation's Application</name>
+    <name>Verification's Application</name>
     <packaging>jar</packaging>
 
     <dependencies>
@@ -23,12 +23,7 @@
             <artifactId>spring-tx</artifactId>
         </dependency>
         <dependency>
-            <groupId>hexarch.dms.preparation</groupId>
-            <artifactId>domain</artifactId>
-            <version>${revision}</version>
-        </dependency>
-        <dependency>
-            <groupId>hexarch.dms.shared</groupId>
+            <groupId>hexarch.dms.verification</groupId>
             <artifactId>domain</artifactId>
             <version>${revision}</version>
         </dependency>

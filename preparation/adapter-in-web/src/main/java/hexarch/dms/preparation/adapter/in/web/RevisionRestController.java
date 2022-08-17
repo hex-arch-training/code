@@ -4,6 +4,8 @@ import hexarch.dms.preparation.application.port.RevisionQueryModel;
 import hexarch.dms.preparation.application.port.in.CreateRevisionCommand;
 import hexarch.dms.preparation.application.port.in.CreateRevisionUseCase;
 import hexarch.dms.preparation.application.port.in.QueryRevisionByIdUseCase;
+import hexarch.dms.preparation.application.port.in.RequestVerificationCommand;
+import hexarch.dms.preparation.application.port.in.RequestVerificationUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +17,7 @@ import org.springframework.web.server.ResponseStatusException;
 public class RevisionRestController {
     private final CreateRevisionUseCase createRevisionUseCase;
     private final QueryRevisionByIdUseCase queryRevisionByIdUseCase;
+    private final RequestVerificationUseCase requestVerificationUseCase;
 
     @PostMapping("/revision")
     public ResponseEntity<String> createRevision(@RequestBody CreateRevisionRequestBody requestBody) {
@@ -26,5 +29,11 @@ public class RevisionRestController {
     public RevisionQueryModel getRevision(@PathVariable Long revisionId) {
         return queryRevisionByIdUseCase.queryBy(revisionId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    }
+
+    @PostMapping("/revision/{revisionId}/requestVerification")
+    public ResponseEntity<Void> requestVerification(@PathVariable Long revisionId) {
+        requestVerificationUseCase.apply(new RequestVerificationCommand(revisionId));
+        return ResponseEntity.ok().build();
     }
 }
