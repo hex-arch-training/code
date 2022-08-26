@@ -8,9 +8,9 @@
         <version>${revision}</version>
     </parent>
     <groupId>hexarch.dms.shared</groupId>
-    <artifactId>domain</artifactId>
+    <artifactId>event</artifactId>
     <version>${revision}</version>
-    <name>Shared kernal domain</name>
+    <name>Shared events</name>
     <packaging>jar</packaging>
 
     <dependencies>

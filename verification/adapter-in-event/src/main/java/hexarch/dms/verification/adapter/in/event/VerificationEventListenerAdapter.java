@@ -1,12 +1,11 @@
 package hexarch.dms.verification.adapter.in.event;
 
-import hexarch.dms.shared.domain.RevisionVerificationRequestedEvent;
+import hexarch.dms.shared.event.RevisionVerificationRequestedEvent;
 import hexarch.dms.verification.application.port.in.PushRevisionToVerificationCommand;
 import hexarch.dms.verification.application.port.in.PushRevisionToVerificationUseCase;
 import lombok.AllArgsConstructor;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 /**
  * An example of inbound adapter that handles events coming from different subdomains.
@@ -17,7 +16,6 @@ public class VerificationEventListenerAdapter implements ApplicationListener<Rev
 
     private final PushRevisionToVerificationUseCase pushRevisionToVerificationUseCase;
 
-    @Transactional
     @Override
     public void onApplicationEvent(RevisionVerificationRequestedEvent event) {
         System.out.printf("Verification requested for %d.%n", event.getRevisionId());

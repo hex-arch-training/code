@@ -1,4 +1,4 @@
-package hexarch.dms.shared.domain;
+package hexarch.dms.shared.event;
 
 import lombok.Getter;
 import org.springframework.context.ApplicationEvent;

@@ -3,10 +3,10 @@ package hexarch.dms.preparation.application;
 import hexarch.dms.preparation.application.port.in.RequestVerificationCommand;
 import hexarch.dms.preparation.application.port.in.RequestVerificationUseCase;
 import hexarch.dms.preparation.application.port.out.GetRevisionPort;
+import hexarch.dms.preparation.application.port.out.PushRevisionToVerificationCommand;
+import hexarch.dms.preparation.application.port.out.PushRevisionToVerificationPort;
 import hexarch.dms.preparation.application.port.out.SaveRevisionPort;
-import hexarch.dms.shared.domain.RevisionVerificationRequestedEvent;
 import lombok.AllArgsConstructor;
-import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class RequestVerificationService implements RequestVerificationUseCase {
     private final GetRevisionPort getRevisionPort;
     private final SaveRevisionPort saveRevisionPort;
-    private final ApplicationEventPublisher applicationEventPublisher;
+    private final PushRevisionToVerificationPort pushRevisionToVerificationPort;
 
     @Transactional
     @Override
@@ -24,6 +24,6 @@ public class RequestVerificationService implements RequestVerificationUseCase {
                 .orElseThrow(() -> new RevisionNotFoundException(command.getRevisionId()));
         revision.lock();
         saveRevisionPort.saveRevision(revision);
-        applicationEventPublisher.publishEvent(new RevisionVerificationRequestedEvent(this, revision.getId()));
+        pushRevisionToVerificationPort.apply(new PushRevisionToVerificationCommand(revision.getId()));
     }
 }

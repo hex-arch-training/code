@@ -8,23 +8,20 @@
         <version>${revision}</version>
     </parent>
     <groupId>hexarch.dms.preparation</groupId>
-    <artifactId>application</artifactId>
+    <artifactId>adapter-out-event</artifactId>
     <version>${revision}</version>
-    <name>Preparation's Application</name>
+    <name>Preparation's Event Adapter (OUT)</name>
     <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-tx</artifactId>
-        </dependency>
-        <dependency>
             <groupId>hexarch.dms.preparation</groupId>
-            <artifactId>domain</artifactId>
+            <artifactId>application</artifactId>
+            <version>${revision}</version>
+        </dependency>
+        <dependency>
+            <groupId>hexarch.dms.shared</groupId>
+            <artifactId>event</artifactId>
             <version>${revision}</version>
         </dependency>
     </dependencies>
