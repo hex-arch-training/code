@@ -45,7 +45,7 @@
         </dependency>
         <dependency>
             <groupId>hexarch.dms.preparation</groupId>
-            <artifactId>adapter-out-verification</artifactId>
+            <artifactId>adapter-out-event</artifactId>
             <version>${revision}</version>
         </dependency>
         <!-- Verification -->
@@ -56,9 +56,21 @@
         </dependency>
         <dependency>
             <groupId>hexarch.dms.verification</groupId>
+            <artifactId>adapter-in-event</artifactId>
+            <version>${revision}</version>
+        </dependency>
+        <dependency>
+            <groupId>hexarch.dms.verification</groupId>
             <artifactId>adapter-out-db</artifactId>
             <version>${revision}</version>
         </dependency>
+        <!-- shared -->
+        <dependency>
+            <groupId>hexarch.dms.shared</groupId>
+            <artifactId>event</artifactId>
+            <version>${revision}</version>
+        </dependency>
+        <!-- test -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>

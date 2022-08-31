@@ -4,27 +4,24 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>hexarch.dms</groupId>
-        <artifactId>preparation</artifactId>
+        <artifactId>verification</artifactId>
         <version>${revision}</version>
     </parent>
-    <groupId>hexarch.dms.preparation</groupId>
-    <artifactId>application</artifactId>
+    <groupId>hexarch.dms.verification</groupId>
+    <artifactId>adapter-in-event</artifactId>
     <version>${revision}</version>
-    <name>Preparation's Application</name>
+    <name>Verification's Event Adapter (IN)</name>
     <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
+            <groupId>hexarch.dms.verification</groupId>
+            <artifactId>application</artifactId>
+            <version>${revision}</version>
         </dependency>
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-tx</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>hexarch.dms.preparation</groupId>
-            <artifactId>domain</artifactId>
+            <groupId>hexarch.dms.shared</groupId>
+            <artifactId>event</artifactId>
             <version>${revision}</version>
         </dependency>
     </dependencies>
