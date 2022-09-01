@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @AllArgsConstructor
-public class SaveRevisionPortImpl implements SaveRevisionPort {
+public class SaveRevisionAdapter implements SaveRevisionPort {
     private final RevisionRepository revisionRepository;
 
     @Override

@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @AllArgsConstructor
-public class PushRevisionToVerificationPortImpl implements PushRevisionToVerificationPort {
+public class PushRevisionToVerificationAdapter implements PushRevisionToVerificationPort {
     private final ApplicationEventPublisher applicationEventPublisher;
 
 

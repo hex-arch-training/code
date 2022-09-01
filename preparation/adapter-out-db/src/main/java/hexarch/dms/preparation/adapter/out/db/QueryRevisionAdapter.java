@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @Component
 @AllArgsConstructor
-public class QueryRevisionPortImpl implements QueryRevisionPort {
+public class QueryRevisionAdapter implements QueryRevisionPort {
     private final RevisionRepository revisionRepository;
 
     @Override
