@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @AllArgsConstructor
-public class VerificationEventListenerAdapter implements ApplicationListener<RevisionVerificationRequestedEvent> {
+public class VerificationEventListener implements ApplicationListener<RevisionVerificationRequestedEvent> {
 
     private final PushRevisionToVerificationUseCase pushRevisionToVerificationUseCase;
 
