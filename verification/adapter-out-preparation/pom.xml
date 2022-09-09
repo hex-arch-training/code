@@ -8,23 +8,20 @@
         <version>${revision}</version>
     </parent>
     <groupId>hexarch.dms.verification</groupId>
-    <artifactId>application</artifactId>
+    <artifactId>adapter-out-preparation</artifactId>
     <version>${revision}</version>
-    <name>Verification's Application</name>
+    <name>Verification's Preparation Adapter (OUT)</name>
     <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-tx</artifactId>
-        </dependency>
-        <dependency>
             <groupId>hexarch.dms.verification</groupId>
-            <artifactId>domain</artifactId>
+            <artifactId>application</artifactId>
+            <version>${revision}</version>
+        </dependency>
+        <dependency>
+            <groupId>hexarch.dms.preparation</groupId>
+            <artifactId>application</artifactId>
             <version>${revision}</version>
         </dependency>
     </dependencies>
