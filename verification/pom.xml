@@ -17,6 +17,7 @@
         <module>adapter-in-web</module>
         <module>adapter-in-event</module>
         <module>adapter-out-db</module>
+        <module>adapter-out-preparation</module>
         <module>application</module>
         <module>domain</module>
     </modules>
