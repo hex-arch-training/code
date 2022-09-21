@@ -2,13 +2,25 @@ package hexarch.dms.preparation.domain;
 
 import hexarch.dms.preparation.domain.converters.DocumentTitleConverter;
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Convert;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 @Entity
+@Getter
 @NoArgsConstructor(access = AccessLevel.PACKAGE) // needed by JPA/Hibernate
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@Builder(access = AccessLevel.PACKAGE)
+@EqualsAndHashCode
 public class Document {
     @Id
     @GeneratedValue
