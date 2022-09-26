@@ -72,6 +72,11 @@
         <!-- shared -->
         <dependency>
             <groupId>hexarch.dms.shared</groupId>
+            <artifactId>util</artifactId>
+            <version>${revision}</version>
+        </dependency>
+        <dependency>
+            <groupId>hexarch.dms.shared</groupId>
             <artifactId>event</artifactId>
             <version>${revision}</version>
         </dependency>

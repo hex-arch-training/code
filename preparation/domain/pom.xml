@@ -15,6 +15,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>hexarch.dms.shared</groupId>
+            <artifactId>util</artifactId>
+            <version>${revision}</version>
+        </dependency>
+        <dependency>
             <groupId>jakarta.persistence</groupId>
             <artifactId>jakarta.persistence-api</artifactId>
         </dependency>

@@ -2,6 +2,8 @@ package hexarch.dms.verification.domain;
 
 import hexarch.dms.verification.domain.converters.DocumentRevisionIdConverter;
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -16,6 +18,9 @@ import java.util.EnumSet;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@Builder(access = AccessLevel.PACKAGE)
 public class RevisionVerification {
 
     private static final EnumSet<VerificationStatus> acceptableStatuses = EnumSet.of(VerificationStatus.PENDING);

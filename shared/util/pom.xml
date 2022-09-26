@@ -3,18 +3,20 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>hexarch</groupId>
-        <artifactId>hexarch.dms</artifactId>
+        <groupId>hexarch.dms</groupId>
+        <artifactId>shared</artifactId>
         <version>${revision}</version>
     </parent>
-    <groupId>hexarch.dms</groupId>
-    <artifactId>shared</artifactId>
+    <groupId>hexarch.dms.shared</groupId>
+    <artifactId>util</artifactId>
     <version>${revision}</version>
-    <name>Shared kernel</name>
-    <packaging>pom</packaging>
+    <name>Various utils</name>
+    <packaging>jar</packaging>
 
-    <modules>
-        <module>util</module>
-        <module>event</module>
-    </modules>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+        </dependency>
+    </dependencies>
 </project>
