@@ -9,9 +9,9 @@ This repository contains an example implementation of some `Document Mangement S
    git clone https://github.com/hex-arch-training/code.git
    cd code
    ```
-2. Build the code using the Maven wrapper:
+2. Build the code using the Gradle wrapper:
     ```bash
-    ./mvnw clean package
+    ./gradlew clean bootJar
     ```
 ## Run and enjoy :)
 1. You can run the `Document Mangement System`'s REST API as a [Spring Boot]() web application:
