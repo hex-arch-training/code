@@ -9,9 +9,11 @@ import hexarch.dms.preparation.domain.DocumentTitle;
 import hexarch.dms.preparation.domain.Revision;
 import hexarch.dms.preparation.domain.RevisionContent;
 import hexarch.dms.preparation.domain.RevisionStatus;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Optional;
 
@@ -21,22 +23,22 @@ import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+@ExtendWith(MockitoExtension.class)
 class RequestVerificationServiceTest {
 
     private final Long ID = 11L;
 
-    private RequestVerificationService requestVerificationService;
+    @Mock
     private GetRevisionPort getRevisionPort;
+
+    @Mock
     private SaveRevisionPort saveRevisionPort;
+
+    @Mock
     private PushRevisionToVerificationPort pushRevisionToVerificationPort;
 
-    @BeforeEach
-    public void beforeEach() {
-        getRevisionPort = Mockito.mock(GetRevisionPort.class);
-        saveRevisionPort = Mockito.mock(SaveRevisionPort.class);
-        pushRevisionToVerificationPort = Mockito.mock(PushRevisionToVerificationPort.class);
-        requestVerificationService = new RequestVerificationService(getRevisionPort, saveRevisionPort, pushRevisionToVerificationPort);
-    }
+    @InjectMocks
+    private RequestVerificationService requestVerificationService;
 
     @Test
     public void shouldThrowExceptionIfRevisionDoesNotExist() {

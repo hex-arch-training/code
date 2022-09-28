@@ -7,8 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ExistingRevisionTest {
 
-    private Revision revision;
-
     private Revision createRevision(RevisionStatus status) {
         return Revision.builder()
                 .id((long) 1)
@@ -21,7 +19,7 @@ class ExistingRevisionTest {
     @Test
     public void shouldBeAbleToLockEditableRevision() {
         // given
-        revision = createRevision(RevisionStatus.EDITABLE);
+        Revision revision = createRevision(RevisionStatus.EDITABLE);
         // when
         revision.lock();
         // then
@@ -31,7 +29,7 @@ class ExistingRevisionTest {
     @Test
     public void shouldBeNotAbleToLockNonEditableRevision() {
         // given
-        revision = createRevision(RevisionStatus.LOCKED);
+        Revision revision = createRevision(RevisionStatus.LOCKED);
         // then
         assertThrows(RevisionNotEditableException.class, () -> {
             // when
