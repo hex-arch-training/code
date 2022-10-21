@@ -1,4 +1,4 @@
-package hexarch.dms.verification.adapter.out.preparation.preparation;
+package hexarch.dms.verification.adapter.out.preparation;
 
 import hexarch.dms.preparation.application.port.in.QueryRevisionByIdUseCase;
 import hexarch.dms.verification.application.port.RevisionContentQueryModel;
