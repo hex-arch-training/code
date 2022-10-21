@@ -3,6 +3,7 @@ package hexarch.dms.verification.application;
 import hexarch.dms.verification.application.port.in.AcceptRevisionCommand;
 import hexarch.dms.verification.application.port.in.AcceptRevisionUseCase;
 import hexarch.dms.verification.application.port.out.FindRevisionVerificationPort;
+import hexarch.dms.verification.application.port.out.GetSecurityContextPort;
 import hexarch.dms.verification.application.port.out.SaveRevisionVerificationPort;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,13 +15,14 @@ public class AcceptRevisionService implements AcceptRevisionUseCase {
 
     private final FindRevisionVerificationPort findRevisionVerificationPort;
     private final SaveRevisionVerificationPort saveRevisionVerificationPort;
+    private final GetSecurityContextPort getSecurityContextPort;
 
     @Transactional
     @Override
     public void apply(AcceptRevisionCommand command) {
         var request = findRevisionVerificationPort.findByRevisionId(command.getRevisionId())
                 .orElseThrow(() -> new VerificationRequestNotFoundException(command.getRevisionId()));
-        request.accept();
+        request.accept(getSecurityContextPort.getCurrentUser());
         saveRevisionVerificationPort.save(request);
     }
 }

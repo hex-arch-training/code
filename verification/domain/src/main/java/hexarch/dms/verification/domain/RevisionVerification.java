@@ -1,6 +1,7 @@
 package hexarch.dms.verification.domain;
 
 import hexarch.dms.verification.domain.converters.DocumentRevisionIdConverter;
+import hexarch.dms.verification.domain.converters.UserConverter;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -29,23 +30,27 @@ public class RevisionVerification {
 
     @Id
     @GeneratedValue
-    @Getter
     private Long id;
 
     @Column(nullable = false, unique = true)
     @Convert(converter = DocumentRevisionIdConverter.class)
-    @Getter
     private DocumentRevisionId documentRevisionId;
 
     @Column(nullable = false)
-    @Getter
+    @Convert(converter = UserConverter.class)
+    private User createdBy;
+
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private VerificationStatus verificationStatus;
 
     /**
      * Marks that revision has been verified and accepted.
      */
-    public void accept() {
+    public void accept(User currentUser) {
+        if (currentUser.equals(createdBy)) {
+            throw new VerificationUserException(currentUser);
+        }
         if (!acceptableStatuses.contains(verificationStatus)) {
             throw new VerificationStatusException(verificationStatus, VerificationStatus.ACCEPTED);
         }
@@ -72,10 +77,11 @@ public class RevisionVerification {
         verificationStatus = VerificationStatus.REJECTED;
     }
 
-    public static RevisionVerification createNew(DocumentRevisionId documentRevisionId) {
+    public static RevisionVerification createNew(DocumentRevisionId documentRevisionId, User createdBy) {
         var request = new RevisionVerification();
         request.documentRevisionId = documentRevisionId;
         request.verificationStatus = VerificationStatus.PENDING;
+        request.createdBy = createdBy;
         return request;
     }
 }

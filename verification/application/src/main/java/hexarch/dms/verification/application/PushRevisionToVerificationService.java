@@ -2,6 +2,7 @@ package hexarch.dms.verification.application;
 
 import hexarch.dms.verification.application.port.in.PushRevisionToVerificationCommand;
 import hexarch.dms.verification.application.port.in.PushRevisionToVerificationUseCase;
+import hexarch.dms.verification.application.port.out.GetSecurityContextPort;
 import hexarch.dms.verification.application.port.out.SaveRevisionVerificationPort;
 import hexarch.dms.verification.domain.DocumentRevisionId;
 import hexarch.dms.verification.domain.RevisionVerification;
@@ -15,10 +16,14 @@ public class PushRevisionToVerificationService implements PushRevisionToVerifica
 
     private final SaveRevisionVerificationPort saveRevisionVerificationPort;
 
+    private final GetSecurityContextPort getSecurityContextPort;
+
     @Transactional
     @Override
     public void apply(PushRevisionToVerificationCommand command) {
-        var request = RevisionVerification.createNew(new DocumentRevisionId(command.getRevisionId()));
+        var request = RevisionVerification.createNew(
+                new DocumentRevisionId(command.getRevisionId()),
+                getSecurityContextPort.getCurrentUser());
         saveRevisionVerificationPort.save(request);
     }
 }
