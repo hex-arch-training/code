@@ -15,6 +15,7 @@
 
     <modules>
         <module>web-api</module>
+        <module>security</module>
         <module>test-architecture</module>
     </modules>
 </project>
