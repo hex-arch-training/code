@@ -7,6 +7,8 @@ import hexarch.dms.preparation.application.port.RevisionQueryModel;
 import hexarch.dms.preparation.application.port.in.CreateRevisionCommand;
 import hexarch.dms.preparation.application.port.in.CreateRevisionUseCase;
 import hexarch.dms.preparation.application.port.in.QueryRevisionByIdUseCase;
+import hexarch.dms.preparation.application.port.in.RequestVerificationCommand;
+import hexarch.dms.preparation.application.port.in.RequestVerificationUseCase;
 import hexarch.dms.preparation.domain.DocumentTitle;
 import hexarch.dms.preparation.domain.RevisionContent;
 import org.junit.jupiter.api.Test;
@@ -49,11 +51,17 @@ class RevisionRestControllerTest {
     @MockBean
     private QueryRevisionByIdUseCase queryRevisionByIdUseCase;
 
+    @MockBean
+    private RequestVerificationUseCase requestVerificationUseCase;
+
     @Autowired
     private MockMvc mvc;
 
     @Captor
     private ArgumentCaptor<CreateRevisionCommand> createRevisionCommandCaptor;
+
+    @Captor
+    private ArgumentCaptor<RequestVerificationCommand> requestVerificationCommand;
 
     private final ObjectMapper objectMapper = JsonMapper.builder()
             .addModule(new JavaTimeModule())
@@ -82,6 +90,20 @@ class RevisionRestControllerTest {
         verify(createRevisionUseCase, times(1)).apply(createRevisionCommandCaptor.capture());
         assertThat(createRevisionCommandCaptor.getValue().getRevisionContent()).isEqualTo(REVISION_CONTENT);
         assertThat(createRevisionCommandCaptor.getValue().getDocumentTitle()).isEqualTo(DOCUMENT_TITLE);
+    }
+
+    @Test
+    void shouldRequestVerification() throws Exception {
+        // given
+        when(createRevisionUseCase.apply(any(CreateRevisionCommand.class))).thenReturn(REVISION_ID);
+
+        // when
+        var resultActions = mvc.perform(post("/revision/{revisionId}/requestVerification", REVISION_ID));
+
+        // then
+        resultActions.andExpect(status().isOk());
+        verify(requestVerificationUseCase, times(1)).apply(requestVerificationCommand.capture());
+        assertThat(requestVerificationCommand.getValue().getRevisionId()).isEqualTo(REVISION_ID);
     }
 
     @Test
