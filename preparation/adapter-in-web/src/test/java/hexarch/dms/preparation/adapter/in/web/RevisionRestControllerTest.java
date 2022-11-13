@@ -1,11 +1,18 @@
 package hexarch.dms.preparation.adapter.in.web;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.json.JsonMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import hexarch.dms.preparation.application.port.RevisionQueryModel;
+import hexarch.dms.preparation.application.port.in.CreateRevisionCommand;
+import hexarch.dms.preparation.application.port.in.CreateRevisionUseCase;
 import hexarch.dms.preparation.application.port.in.QueryRevisionByIdUseCase;
 import hexarch.dms.preparation.domain.DocumentTitle;
 import hexarch.dms.preparation.domain.RevisionContent;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -15,12 +22,16 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.Optional;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(SpringExtension.class)
@@ -33,10 +44,45 @@ class RevisionRestControllerTest {
     private static RevisionContent REVISION_CONTENT = new RevisionContent("content");
 
     @MockBean
+    private CreateRevisionUseCase createRevisionUseCase;
+
+    @MockBean
     private QueryRevisionByIdUseCase queryRevisionByIdUseCase;
 
     @Autowired
     private MockMvc mvc;
+
+    @Captor
+    private ArgumentCaptor<CreateRevisionCommand> createRevisionCommandCaptor;
+
+    private final ObjectMapper objectMapper = JsonMapper.builder()
+            .addModule(new JavaTimeModule())
+            .build();
+
+    @Test
+    void shouldCreateRevision() throws Exception {
+        // given
+        var requestBody = new CreateRevisionRequestBody();
+        requestBody.setRevisionContent(REVISION_CONTENT.getValue());
+        requestBody.setDocumentTitle(DOCUMENT_TITLE.getValue());
+
+        when(createRevisionUseCase.apply(any(CreateRevisionCommand.class))).thenReturn(REVISION_ID);
+
+        // when
+        var resultActions = mvc.perform(post("/revision")
+                .content(objectMapper.writeValueAsString(requestBody))
+                .accept(APPLICATION_JSON_VALUE)
+                .contentType(APPLICATION_JSON_VALUE));
+
+        // then
+        resultActions
+                .andExpect(status().isCreated())
+                .andExpect(content().contentType(APPLICATION_JSON_VALUE))
+                .andExpect(content().string(REVISION_ID.toString()));
+        verify(createRevisionUseCase, times(1)).apply(createRevisionCommandCaptor.capture());
+        assertThat(createRevisionCommandCaptor.getValue().getRevisionContent()).isEqualTo(REVISION_CONTENT);
+        assertThat(createRevisionCommandCaptor.getValue().getDocumentTitle()).isEqualTo(DOCUMENT_TITLE);
+    }
 
     @Test
     void shouldFindRevision() throws Exception {
