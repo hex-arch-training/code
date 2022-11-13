@@ -4,7 +4,6 @@ import com.tngtech.archunit.junit.AnalyzeClasses;
 import com.tngtech.archunit.junit.ArchTest;
 import com.tngtech.archunit.lang.ArchRule;
 import com.tngtech.archunit.lang.syntax.ArchRuleDefinition;
-import com.tngtech.archunit.library.Architectures;
 
 @AnalyzeClasses(packages = "hexarch.dms")
 class ArchitectureTest {
@@ -17,5 +16,14 @@ class ArchitectureTest {
             .should()
             .dependOnClassesThat()
             .resideInAnyPackage("..preparation..", "..verification..", "..configuration..");
+
+    @ArchTest
+    static final ArchRule dependenciesOfComponentPreparationAreRespected = ArchRuleDefinition
+            .noClasses()
+            .that()
+            .resideInAnyPackage("..preparation..")
+            .should()
+            .dependOnClassesThat()
+            .resideInAnyPackage("..configuration..");
 
 }
