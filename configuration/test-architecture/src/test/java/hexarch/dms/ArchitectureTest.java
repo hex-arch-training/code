@@ -26,4 +26,13 @@ class ArchitectureTest {
             .dependOnClassesThat()
             .resideInAnyPackage("..configuration..");
 
+    @ArchTest
+    static final ArchRule dependenciesOfComponentVerificationAreRespected = ArchRuleDefinition
+            .noClasses()
+            .that()
+            .resideInAnyPackage("..verification..")
+            .should()
+            .dependOnClassesThat()
+            .resideInAnyPackage("..configuration..");
+
 }
