@@ -1,7 +1,9 @@
 package hexarch.dms.preparation.domain;
 
 import hexarch.dms.preparation.domain.converters.ValueObject;
-import lombok.*;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.ToString;
 
 import static hexarch.dms.preparation.domain.Validation.requireMaxLength;
 import static hexarch.dms.preparation.domain.Validation.requireNonBlank;
