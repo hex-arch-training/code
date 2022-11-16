@@ -1,6 +1,6 @@
 package hexarch.dms.preparation.application;
 
-import hexarch.dms.preparation.application.port.in.CreateRevisionCommand;
+import hexarch.dms.preparation.domain.CreateRevisionCommand;
 import hexarch.dms.preparation.application.port.in.CreateRevisionUseCase;
 import hexarch.dms.preparation.application.port.out.SaveRevisionPort;
 import hexarch.dms.preparation.domain.Revision;
@@ -18,8 +18,7 @@ class CreateRevisionService implements CreateRevisionUseCase {
     @Transactional // we allow using Spring annotations to set transaction boundaries
     @Override
     public Long apply(@NonNull CreateRevisionCommand command) {
-        final var newRevision = Revision.createNew(
-                command.getDocumentTitle(), command.getRevisionContent());
+        final var newRevision = Revision.apply(command);
         return saveRevisionPort.saveRevision(newRevision);
     }
 }

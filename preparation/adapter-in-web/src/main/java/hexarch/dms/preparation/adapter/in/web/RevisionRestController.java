@@ -1,7 +1,7 @@
 package hexarch.dms.preparation.adapter.in.web;
 
 import hexarch.dms.preparation.application.port.RevisionQueryModel;
-import hexarch.dms.preparation.application.port.in.CreateRevisionCommand;
+import hexarch.dms.preparation.domain.CreateRevisionCommand;
 import hexarch.dms.preparation.application.port.in.CreateRevisionUseCase;
 import hexarch.dms.preparation.application.port.in.QueryRevisionByIdUseCase;
 import hexarch.dms.preparation.application.port.in.RequestVerificationCommand;

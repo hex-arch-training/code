@@ -1,4 +1,4 @@
-package hexarch.dms.preparation.application.port.in;
+package hexarch.dms.preparation.domain;
 
 import hexarch.dms.preparation.domain.DocumentTitle;
 import hexarch.dms.preparation.domain.RevisionContent;

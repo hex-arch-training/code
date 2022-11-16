@@ -44,6 +44,11 @@ public class Revision {
     @ManyToOne(cascade = CascadeType.ALL)
     private Document document;
 
+    public static Revision apply(CreateRevisionCommand command) {
+        // here the aggregate can check its consistency by applying domain validation.
+        return createNew(command.getDocumentTitle(), command.getRevisionContent());
+    }
+
     public void lock() {
         if (status != RevisionStatus.EDITABLE) {
             throw new RevisionNotEditableException(id, status);

@@ -1,6 +1,6 @@
 package hexarch.dms.preparation.application;
 
-import hexarch.dms.preparation.application.port.in.CreateRevisionCommand;
+import hexarch.dms.preparation.domain.CreateRevisionCommand;
 import hexarch.dms.preparation.application.port.out.SaveRevisionPort;
 import hexarch.dms.preparation.domain.DocumentTitle;
 import hexarch.dms.preparation.domain.Revision;
