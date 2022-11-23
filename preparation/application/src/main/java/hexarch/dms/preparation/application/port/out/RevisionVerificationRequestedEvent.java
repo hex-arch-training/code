@@ -7,6 +7,6 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 @EqualsAndHashCode
-public class PushRevisionToVerificationCommand {
+public class RevisionVerificationRequestedEvent {
     private final long revisionId;
 }

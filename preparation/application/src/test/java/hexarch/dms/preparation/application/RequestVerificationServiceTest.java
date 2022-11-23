@@ -2,8 +2,8 @@ package hexarch.dms.preparation.application;
 
 import hexarch.dms.preparation.application.port.in.RequestVerificationCommand;
 import hexarch.dms.preparation.application.port.out.GetRevisionPort;
-import hexarch.dms.preparation.application.port.out.PushRevisionToVerificationCommand;
-import hexarch.dms.preparation.application.port.out.PushRevisionToVerificationPort;
+import hexarch.dms.preparation.application.port.out.RevisionVerificationRequestedEvent;
+import hexarch.dms.preparation.application.port.out.PublishRevisionVerificationRequestedEventPort;
 import hexarch.dms.preparation.application.port.out.SaveRevisionPort;
 import hexarch.dms.preparation.domain.DocumentTitle;
 import hexarch.dms.preparation.domain.Revision;
@@ -35,7 +35,7 @@ class RequestVerificationServiceTest {
     private SaveRevisionPort saveRevisionPort;
 
     @Mock
-    private PushRevisionToVerificationPort pushRevisionToVerificationPort;
+    private PublishRevisionVerificationRequestedEventPort publishRevisionVerificationRequestedEventPort;
 
     @InjectMocks
     private RequestVerificationService requestVerificationService;
@@ -62,6 +62,6 @@ class RequestVerificationServiceTest {
         // then
         assertEquals(RevisionStatus.LOCKED, revision.getStatus());
         verify(saveRevisionPort).saveRevision(revision);
-        verify(pushRevisionToVerificationPort).apply(eq(new PushRevisionToVerificationCommand(ID)));
+        verify(publishRevisionVerificationRequestedEventPort).publish(eq(new RevisionVerificationRequestedEvent(ID)));
     }
 }
