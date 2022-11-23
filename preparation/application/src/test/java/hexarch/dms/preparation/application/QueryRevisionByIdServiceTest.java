@@ -27,7 +27,7 @@ class QueryRevisionByIdServiceTest {
     private QueryRevisionByIdService queryRevisionByIdService;
 
     @Test
-    public void shouldSaveRevisionViaPort() {
+    public void returnRevisionQueryModel() {
         // given
         var expectedRevisionQueryModel = Optional.of(
                 new RevisionQueryModel(ID, 2L, new DocumentTitle("title"), new RevisionContent("content")));
