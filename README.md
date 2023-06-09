@@ -3,7 +3,7 @@
 This repository contains an example implementation of some `Document Mangement System`.
 
 ## Install and Build
-0. Prerequisite: you need a Java SDK 11 and a Git client.
+0. Prerequisite: you need a Java SDK 17 and a Git client.
 1. Clone this repository:
    ```bash
    git clone https://github.com/hex-arch-training/code.git
