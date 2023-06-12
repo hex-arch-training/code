@@ -6,6 +6,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import hexarch.dms.preparation.application.port.RevisionQueryModel;
 import hexarch.dms.preparation.application.port.in.CreateRevisionUseCase;
 import hexarch.dms.preparation.application.port.in.QueryRevisionByIdUseCase;
+import hexarch.dms.preparation.application.port.in.RequestVerificationUseCase;
 import hexarch.dms.preparation.domain.DocumentTitle;
 import hexarch.dms.preparation.domain.RevisionContent;
 import org.junit.jupiter.api.Test;
@@ -47,6 +48,9 @@ class RevisionRestControllerTest {
 
     @MockBean
     private CreateRevisionUseCase createRevisionUseCase;
+
+    @MockBean
+    private RequestVerificationUseCase requestVerificationUseCase;
 
     @Autowired
     private MockMvc mvc;
