@@ -18,4 +18,12 @@ class ArchitectureTest {
             .dependOnClassesThat()
             .resideInAnyPackage("..preparation..", "..verification..", "..configuration..");
 
+    @ArchTest
+    static final ArchRule dependenciesOfComponentPreparationAreRespected = ArchRuleDefinition
+            .noClasses()
+            .that()
+            .resideInAnyPackage("..preparation..")
+            .should()
+            .dependOnClassesThat()
+            .resideInAnyPackage("..configuration..");
 }

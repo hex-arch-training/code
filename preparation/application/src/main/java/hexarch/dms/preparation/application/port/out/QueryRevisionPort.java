@@ -1,4 +1,9 @@
 package hexarch.dms.preparation.application.port.out;
 
-interface QueryRevisionPort {
+import hexarch.dms.preparation.application.port.RevisionQueryModel;
+
+import java.util.Optional;
+
+public interface QueryRevisionPort {
+    Optional<RevisionQueryModel> queryBy(long revisionId);
 }
