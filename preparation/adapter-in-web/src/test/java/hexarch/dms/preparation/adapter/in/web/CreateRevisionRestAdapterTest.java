@@ -58,4 +58,30 @@ class CreateRevisionRestAdapterTest {
                 .andExpect(content().string(String.valueOf(REVISION_ID)));
         verify(createRevisionUseCase, times(1)).apply(command);
     }
+
+    @Test
+    void shouldFailOnValidation() throws Exception {
+        // given
+        var faultyTitle = "Some other titleSome other titleSome other titleSome other" +
+                           "titleSome other titleSome other titleSome other titleSome other titleSome other" +
+                           "titleSome other titleSome other titleSome other titleSome other titleSome other" +
+                           " titleSome other titleSome other titleSome other titleSome other titleSome other" +
+                           " titleSome other titleSome other titleSome other titleSome other titleSome other" +
+                           " titleSome other titleSome other titleSome other titleSome other titleSome other" +
+                           " titleSome other titleSome other titleSome other titleSome other titleSome other" +
+                           "  titleSome other title";
+        // when
+        var resultActions = mvc.perform(post("/revisions")
+                .content("""
+                        {
+                            "documentTitle": "%s",
+                            "revisionContent": "%s"
+                        }
+                        """.formatted(faultyTitle, REVISION_CONTENT))
+                .accept(APPLICATION_JSON_VALUE)
+                .contentType(APPLICATION_JSON_VALUE));
+        // then
+        resultActions
+                .andExpect(status().is(422));
+    }
 }
