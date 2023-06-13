@@ -1,7 +1,7 @@
 package hexarch.dms.preparation.adapter.in.web;
 
 import hexarch.dms.preparation.application.port.in.QueryRevisionByIdUseCase;
-import hexarch.dms.preparation.application.port.in.RevisionQueryModel;
+import hexarch.dms.preparation.application.port.RevisionQueryModel;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;

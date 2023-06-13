@@ -1,6 +1,6 @@
 package hexarch.dms.preparation.application;
 
-import hexarch.dms.preparation.application.port.in.RevisionQueryModel;
+import hexarch.dms.preparation.application.port.RevisionQueryModel;
 import hexarch.dms.preparation.application.port.out.QueryRevisionPort;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

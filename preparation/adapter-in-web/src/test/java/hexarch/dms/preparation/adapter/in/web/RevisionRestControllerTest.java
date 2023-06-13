@@ -1,7 +1,7 @@
 package hexarch.dms.preparation.adapter.in.web;
 
 import hexarch.dms.preparation.application.port.in.QueryRevisionByIdUseCase;
-import hexarch.dms.preparation.application.port.in.RevisionQueryModel;
+import hexarch.dms.preparation.application.port.RevisionQueryModel;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;

@@ -1,6 +1,6 @@
 package hexarch.dms.preparation.adapter.out.db;
 
-import hexarch.dms.preparation.application.port.in.RevisionQueryModel;
+import hexarch.dms.preparation.application.port.RevisionQueryModel;
 import hexarch.dms.preparation.domain.DocumentTitle;
 import hexarch.dms.preparation.domain.Revision;
 import hexarch.dms.preparation.domain.RevisionContent;

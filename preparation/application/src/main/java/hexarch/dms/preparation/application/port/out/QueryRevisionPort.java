@@ -1,6 +1,6 @@
 package hexarch.dms.preparation.application.port.out;
 
-import hexarch.dms.preparation.application.port.in.RevisionQueryModel;
+import hexarch.dms.preparation.application.port.RevisionQueryModel;
 
 import java.util.Optional;
 
