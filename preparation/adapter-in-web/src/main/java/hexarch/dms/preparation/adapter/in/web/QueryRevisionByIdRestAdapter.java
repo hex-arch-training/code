@@ -11,7 +11,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @AllArgsConstructor
-class RevisionRestController {
+class QueryRevisionByIdRestAdapter {
 
     private final QueryRevisionByIdUseCase queryRevisionByIdUseCase;
 

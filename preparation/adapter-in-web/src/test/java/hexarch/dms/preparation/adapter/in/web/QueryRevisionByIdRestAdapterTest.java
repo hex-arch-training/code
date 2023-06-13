@@ -19,8 +19,8 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(MockitoExtension.class)
-@WebMvcTest(RevisionRestController.class)
-class RevisionRestControllerTest {
+@WebMvcTest(QueryRevisionByIdRestAdapter.class)
+class QueryRevisionByIdRestAdapterTest {
 
     private static final long REVISION_ID = 1L;
     private static final long DOCUMENT_ID = 21L;
