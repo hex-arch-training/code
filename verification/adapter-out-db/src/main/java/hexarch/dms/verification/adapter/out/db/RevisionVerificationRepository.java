@@ -17,5 +17,11 @@ public interface RevisionVerificationRepository extends JpaRepository<RevisionVe
             FROM RevisionVerification rv
             WHERE rv.documentRevisionId = :revisionId
             """)
-    Optional<RevisionVerificationQueryModel> queryByRevisionId(@Param("revisionId") DocumentRevisionId revisionId);
+    Optional<RevisionVerificationQueryModel> queryReadModelByRevisionId(@Param("revisionId") DocumentRevisionId revisionId);
+
+    @Query("""
+            FROM RevisionVerification rv
+            WHERE rv.documentRevisionId = :revisionId
+            """)
+    Optional<RevisionVerification> queryByRevisionId(@Param("revisionId") DocumentRevisionId revisionId);
 }
