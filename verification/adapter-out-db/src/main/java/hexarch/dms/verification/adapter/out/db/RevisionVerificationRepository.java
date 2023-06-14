@@ -1,6 +1,7 @@
 package hexarch.dms.verification.adapter.out.db;
 
 import hexarch.dms.verification.application.port.RevisionVerificationQueryModel;
+import hexarch.dms.verification.domain.DocumentRevisionId;
 import hexarch.dms.verification.domain.RevisionVerification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -16,5 +17,5 @@ public interface RevisionVerificationRepository extends JpaRepository<RevisionVe
             FROM RevisionVerification rv
             WHERE rv.documentRevisionId = :revisionId
             """)
-    Optional<RevisionVerificationQueryModel> queryByRevisionId(@Param("revisionId") long revisionId);
+    Optional<RevisionVerificationQueryModel> queryByRevisionId(@Param("revisionId") DocumentRevisionId revisionId);
 }

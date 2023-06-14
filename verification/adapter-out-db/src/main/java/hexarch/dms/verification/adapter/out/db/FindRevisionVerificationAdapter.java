@@ -16,6 +16,6 @@ class FindRevisionVerificationAdapter implements FindRevisionVerificationPort {
 
     @Override
     public Optional<RevisionVerificationQueryModel> findBy(final DocumentRevisionId revisionId) {
-        return revisionVerificationRepository.queryByRevisionId(revisionId.getRevisionId());
+        return revisionVerificationRepository.queryByRevisionId(revisionId);
     }
 }
