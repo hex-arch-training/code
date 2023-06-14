@@ -6,18 +6,14 @@ import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 
 @Converter
-public class RevisionStatusConverter implements AttributeConverter<RevisionStatus, Boolean> {
+public class RevisionStatusConverter implements AttributeConverter<RevisionStatus, String> {
     @Override
-    public Boolean convertToDatabaseColumn(RevisionStatus attribute) {
-        return attribute == RevisionStatus.LOCKED;
+    public String convertToDatabaseColumn(RevisionStatus attribute) {
+        return attribute.getDbValue();
     }
 
     @Override
-    public RevisionStatus convertToEntityAttribute(Boolean dbData) {
-        if (dbData) {
-            return RevisionStatus.LOCKED;
-        } else {
-            return RevisionStatus.EDITABLE;
-        }
+    public RevisionStatus convertToEntityAttribute(String dbData) {
+        return RevisionStatus.fromDb(dbData);
     }
 }
