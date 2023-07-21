@@ -41,8 +41,8 @@ class QueryRevisionVerificationServiceTest {
         assertThat(verificationRequestModel)
                 .isPresent()
                 .hasValueSatisfying(value -> {
-                    assertThat(value.getDocumentRevisionId()).isEqualTo(revisionVerification.getDocumentRevisionId());
-                    assertThat(value.getVerificationStatus()).isEqualTo(revisionVerification.getVerificationStatus());
+                    assertThat(value.documentRevisionId()).isEqualTo(revisionVerification.getDocumentRevisionId());
+                    assertThat(value.verificationStatus()).isEqualTo(revisionVerification.getVerificationStatus());
                 });
     }
 

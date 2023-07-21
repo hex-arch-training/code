@@ -25,8 +25,8 @@ public class QueryRevisionPreviewService implements QueryRevisionPreviewUseCase 
                         findRevisionVerificationPort.findByRevisionId(revisionId)
                                 .map(revisionVerification ->
                                         new RevisionPreviewQueryModel(
-                                                revisionQueryModel.getTitle(),
-                                                revisionQueryModel.getContent(),
+                                                revisionQueryModel.title(),
+                                                revisionQueryModel.content(),
                                                 revisionVerification.getDocumentRevisionId(),
                                                 revisionVerification.getVerificationStatus())));
     }

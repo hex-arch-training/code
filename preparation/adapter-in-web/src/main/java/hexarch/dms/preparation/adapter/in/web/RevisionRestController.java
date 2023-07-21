@@ -25,7 +25,7 @@ public class RevisionRestController {
 
     @PostMapping("/revision")
     public ResponseEntity<String> createRevision(@RequestBody CreateRevisionRequestBody requestBody) {
-        var revisionId = createRevisionUseCase.apply(new CreateRevisionCommand(requestBody.getDocumentTitle(), requestBody.getRevisionContent()));
+        var revisionId = createRevisionUseCase.apply(new CreateRevisionCommand(requestBody.documentTitle(), requestBody.revisionContent()));
         return new ResponseEntity<>(String.valueOf(revisionId), HttpStatus.CREATED);
     }
 

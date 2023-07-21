@@ -63,7 +63,7 @@ class RevisionVerificationRestControllerTest {
         resultActions
                 .andExpect(status().isOk());
         verify(acceptRevisionUseCase, times(1)).apply(acceptRevisionCommandCaptor.capture());
-        assertThat(acceptRevisionCommandCaptor.getValue().getRevisionId().getRevisionId()).isEqualTo(REVISION_ID);
+        assertThat(acceptRevisionCommandCaptor.getValue().revisionId().getRevisionId()).isEqualTo(REVISION_ID);
     }
 
     @Test

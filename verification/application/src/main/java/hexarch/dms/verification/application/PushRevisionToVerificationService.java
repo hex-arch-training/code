@@ -22,7 +22,7 @@ public class PushRevisionToVerificationService implements PushRevisionToVerifica
     @Override
     public void apply(PushRevisionToVerificationCommand command) {
         var request = RevisionVerification.createNew(
-                new DocumentRevisionId(command.getRevisionId()),
+                new DocumentRevisionId(command.revisionId()),
                 getSecurityContextPort.getCurrentUser());
         saveRevisionVerificationPort.save(request);
     }

@@ -31,9 +31,9 @@ public class RevisionVerificationRestController {
         return queryRevisionPreviewUseCase
                 .queryBy(new DocumentRevisionId(revisionId))
                 .map(queryModel -> new RevisionPreviewBody(
-                        queryModel.getTitle(),
-                        queryModel.getContent(),
-                        queryModel.getVerificationStatus()))
+                        queryModel.title(),
+                        queryModel.content(),
+                        queryModel.verificationStatus()))
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 }

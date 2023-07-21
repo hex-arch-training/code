@@ -1,13 +1,7 @@
 package hexarch.dms.verification.application.port;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-@AllArgsConstructor
-@Getter
-public class RevisionContentQueryModel {
+public record RevisionContentQueryModel(String title, String content) {
 
-    private final String title;
-
-    private final String content;
 }

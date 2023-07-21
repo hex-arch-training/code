@@ -50,10 +50,10 @@ class QueryRevisionPreviewServiceTest {
         assertThat(revisionPreviewQueryModel)
                 .isPresent()
                 .hasValueSatisfying(value -> {
-                    assertThat(value.getDocumentRevisionId()).isEqualTo(revisionVerification.getDocumentRevisionId());
-                    assertThat(value.getVerificationStatus()).isEqualTo(revisionVerification.getVerificationStatus());
-                    assertThat(value.getTitle()).isEqualTo(revisionContentQueryModel.getTitle());
-                    assertThat(value.getContent()).isEqualTo(revisionContentQueryModel.getContent());
+                    assertThat(value.documentRevisionId()).isEqualTo(revisionVerification.getDocumentRevisionId());
+                    assertThat(value.verificationStatus()).isEqualTo(revisionVerification.getVerificationStatus());
+                    assertThat(value.title()).isEqualTo(revisionContentQueryModel.title());
+                    assertThat(value.content()).isEqualTo(revisionContentQueryModel.content());
                 });
 
     }

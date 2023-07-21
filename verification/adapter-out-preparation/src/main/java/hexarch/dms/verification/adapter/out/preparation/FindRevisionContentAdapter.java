@@ -19,6 +19,7 @@ public class FindRevisionContentAdapter implements FindRevisionContentPort {
     public Optional<RevisionContentQueryModel> queryBy(DocumentRevisionId revisionId) {
         return queryRevisionByIdUseCase
                 .queryBy(revisionId.getRevisionId())
-                .map(revisionQueryModel -> new RevisionContentQueryModel(revisionQueryModel.getDocumentTitle(), revisionQueryModel.getContent()));
+                .map(revisionQueryModel -> new RevisionContentQueryModel(revisionQueryModel.documentTitle(),
+                        revisionQueryModel.content()));
     }
 }

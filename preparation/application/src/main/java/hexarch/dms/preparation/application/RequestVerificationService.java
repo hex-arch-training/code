@@ -20,8 +20,8 @@ public class RequestVerificationService implements RequestVerificationUseCase {
     @Transactional
     @Override
     public void apply(RequestVerificationCommand command) {
-        var revision = getRevisionPort.getById(command.getRevisionId())
-                .orElseThrow(() -> new RevisionNotFoundException(command.getRevisionId()));
+        var revision = getRevisionPort.getById(command.revisionId())
+                .orElseThrow(() -> new RevisionNotFoundException(command.revisionId()));
         revision.lock();
         saveRevisionPort.saveRevision(revision);
         publishVerificationRequestedEventPort.publish(new RevisionVerificationRequestedEvent(revision.getId()));

@@ -20,8 +20,8 @@ public class AcceptRevisionService implements AcceptRevisionUseCase {
     @Transactional
     @Override
     public void apply(AcceptRevisionCommand command) {
-        var request = findRevisionVerificationPort.findByRevisionId(command.getRevisionId())
-                .orElseThrow(() -> new VerificationRequestNotFoundException(command.getRevisionId()));
+        var request = findRevisionVerificationPort.findByRevisionId(command.revisionId())
+                .orElseThrow(() -> new VerificationRequestNotFoundException(command.revisionId()));
         request.accept(getSecurityContextPort.getCurrentUser());
         saveRevisionVerificationPort.save(request);
     }

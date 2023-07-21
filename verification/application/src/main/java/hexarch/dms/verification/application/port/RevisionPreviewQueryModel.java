@@ -5,15 +5,6 @@ import hexarch.dms.verification.domain.VerificationStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-@AllArgsConstructor
-@Getter
-public class RevisionPreviewQueryModel {
-
-    private final String title;
-
-    private final String content;
-
-    private final DocumentRevisionId documentRevisionId;
-
-    private final VerificationStatus verificationStatus;
+public record RevisionPreviewQueryModel(String title, String content, DocumentRevisionId documentRevisionId,
+                                        VerificationStatus verificationStatus) {
 }

@@ -6,15 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@NoArgsConstructor // needed by Jackson mapper
-@AllArgsConstructor
-@Getter
-@Setter
-public class RevisionPreviewBody {
+public record RevisionPreviewBody(String title, String content, VerificationStatus verificationStatus) {
 
-    private String title;
-
-    private String content;
-
-    private VerificationStatus verificationStatus;
 }

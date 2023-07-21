@@ -70,9 +70,7 @@ class RevisionRestControllerTest {
     @Test
     void shouldCreateRevision() throws Exception {
         // given
-        var requestBody = new CreateRevisionRequestBody();
-        requestBody.setRevisionContent(REVISION_CONTENT.getValue());
-        requestBody.setDocumentTitle(DOCUMENT_TITLE.getValue());
+        var requestBody = new CreateRevisionRequestBody(DOCUMENT_TITLE.getValue(), REVISION_CONTENT.getValue());
 
         when(createRevisionUseCase.apply(any(CreateRevisionCommand.class))).thenReturn(REVISION_ID);
 
@@ -88,8 +86,8 @@ class RevisionRestControllerTest {
                 .andExpect(content().contentType(APPLICATION_JSON_VALUE))
                 .andExpect(content().string(REVISION_ID.toString()));
         verify(createRevisionUseCase, times(1)).apply(createRevisionCommandCaptor.capture());
-        assertThat(createRevisionCommandCaptor.getValue().getRevisionContent()).isEqualTo(REVISION_CONTENT);
-        assertThat(createRevisionCommandCaptor.getValue().getDocumentTitle()).isEqualTo(DOCUMENT_TITLE);
+        assertThat(createRevisionCommandCaptor.getValue().revisionContent()).isEqualTo(REVISION_CONTENT);
+        assertThat(createRevisionCommandCaptor.getValue().documentTitle()).isEqualTo(DOCUMENT_TITLE);
     }
 
     @Test
@@ -103,7 +101,7 @@ class RevisionRestControllerTest {
         // then
         resultActions.andExpect(status().isOk());
         verify(requestVerificationUseCase, times(1)).apply(requestVerificationCommand.capture());
-        assertThat(requestVerificationCommand.getValue().getRevisionId()).isEqualTo(REVISION_ID);
+        assertThat(requestVerificationCommand.getValue().revisionId()).isEqualTo(REVISION_ID);
     }
 
     @Test

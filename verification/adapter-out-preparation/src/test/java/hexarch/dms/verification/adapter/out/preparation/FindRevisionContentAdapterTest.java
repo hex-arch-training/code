@@ -43,8 +43,8 @@ class FindRevisionContentAdapterTest {
         assertThat(revisionContentQueryModel)
                 .isPresent()
                 .hasValueSatisfying(value -> {
-                    assertThat(value.getTitle()).isEqualTo(revisionQueryModel.getDocumentTitle());
-                    assertThat(value.getContent()).isEqualTo(revisionQueryModel.getContent());
+                    assertThat(value.title()).isEqualTo(revisionQueryModel.documentTitle());
+                    assertThat(value.content()).isEqualTo(revisionQueryModel.content());
                 });
     }
 }

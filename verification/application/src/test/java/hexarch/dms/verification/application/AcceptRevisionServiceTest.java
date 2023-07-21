@@ -52,7 +52,7 @@ class AcceptRevisionServiceTest {
         var userOne = new User("one");
         var userTwo = new User("two");
         var command = new AcceptRevisionCommand(DOCUMENT_REVISION_ID);
-        var revisionVerification = RevisionVerification.createNew(command.getRevisionId(), userOne);
+        var revisionVerification = RevisionVerification.createNew(command.revisionId(), userOne);
         when(findRevisionVerificationPort.findByRevisionId(DOCUMENT_REVISION_ID)).thenReturn(Optional.of(revisionVerification));
         when(getSecurityContextPort.getCurrentUser()).thenReturn(userTwo);
 
@@ -69,7 +69,7 @@ class AcceptRevisionServiceTest {
         // given
         var user = new User("one");
         var command = new AcceptRevisionCommand(DOCUMENT_REVISION_ID);
-        var revisionVerification = RevisionVerification.createNew(command.getRevisionId(), user);
+        var revisionVerification = RevisionVerification.createNew(command.revisionId(), user);
         when(findRevisionVerificationPort.findByRevisionId(DOCUMENT_REVISION_ID)).thenReturn(Optional.of(revisionVerification));
         when(getSecurityContextPort.getCurrentUser()).thenReturn(user);
 
@@ -87,7 +87,7 @@ class AcceptRevisionServiceTest {
         var userOne = new User("one");
         var userTwo = new User("two");
         var command = new AcceptRevisionCommand(DOCUMENT_REVISION_ID);
-        var revisionVerification = RevisionVerification.createNew(command.getRevisionId(), userOne);
+        var revisionVerification = RevisionVerification.createNew(command.revisionId(), userOne);
         revisionVerification.accept(userTwo);
         when(findRevisionVerificationPort.findByRevisionId(DOCUMENT_REVISION_ID)).thenReturn(Optional.of(revisionVerification));
         when(getSecurityContextPort.getCurrentUser()).thenReturn(userTwo);

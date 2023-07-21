@@ -19,7 +19,7 @@ class CreateRevisionService implements CreateRevisionUseCase {
     @Override
     public Long apply(@NonNull CreateRevisionCommand command) {
         final var newRevision = Revision.createNew(
-                command.getDocumentTitle(), command.getRevisionContent());
+                command.documentTitle(), command.revisionContent());
         return saveRevisionPort.saveRevision(newRevision);
     }
 }

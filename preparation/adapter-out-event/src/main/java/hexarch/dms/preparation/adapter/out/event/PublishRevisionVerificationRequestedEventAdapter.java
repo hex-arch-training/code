@@ -17,6 +17,6 @@ public class PublishRevisionVerificationRequestedEventAdapter implements Publish
 
     @Override
     public void publish(RevisionVerificationRequestedEvent command) {
-        applicationEventPublisher.publishEvent(new hexarch.dms.shared.event.RevisionVerificationRequestedEvent(this, command.getRevisionId()));
+        applicationEventPublisher.publishEvent(new hexarch.dms.shared.event.RevisionVerificationRequestedEvent(this, command.revisionId()));
     }
 }
