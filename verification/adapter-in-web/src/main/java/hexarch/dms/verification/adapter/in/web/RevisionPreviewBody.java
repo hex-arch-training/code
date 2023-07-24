@@ -6,6 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-public record RevisionPreviewBody(String title, String content, VerificationStatus verificationStatus) {
+public record RevisionPreviewBody() {
 
 }
