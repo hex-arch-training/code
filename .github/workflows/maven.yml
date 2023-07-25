@@ -5,9 +5,9 @@ name: Java CI with Maven
 
 on:
   push:
-    branches: [ "00-start", "00-start-with-templates", "master", "wks-00-start"]
+    branches: [ "00-start", "00-start-with-templates", "master", "wks-00-start", "wks-01-first-usecase-prep"]
   pull_request:
-    branches: [ "00-start", "00-start-with-templates", "master", "wks-00-start"]
+    branches: [ "00-start", "00-start-with-templates", "master", "wks-00-start", "wks-01-first-usecase-prep"]
 
 jobs:
   build:
