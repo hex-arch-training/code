@@ -1,4 +1,4 @@
 package hexarch.dms.preparation.application.port.out;
 
-public record RevisionVerificationRequestedEvent() {
+public record RevisionVerificationRequestedEvent(long revisionId) {
 }
