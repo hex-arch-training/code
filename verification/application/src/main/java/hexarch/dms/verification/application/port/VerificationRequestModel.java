@@ -5,5 +5,5 @@ import hexarch.dms.verification.domain.VerificationStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-public record VerificationRequestModel() {
+public record VerificationRequestModel(DocumentRevisionId documentRevisionId, VerificationStatus verificationStatus) {
 }
