@@ -6,5 +6,4 @@ import hexarch.dms.preparation.domain.Revision;
 
 public interface GetRevisionPort {
     Optional<Revision> getById(long revisionId);
-
 }

@@ -1,6 +1,8 @@
 package hexarch.dms.verification.application;
 
-import hexarch.dms.verification.application.port.VerificationRequestModel;
+import hexarch.dms.verification.application.port.RevisionContentQueryModel;
+import hexarch.dms.verification.application.port.RevisionPreviewQueryModel;
+import hexarch.dms.verification.application.port.out.FindRevisionContentPort;
 import hexarch.dms.verification.application.port.out.FindRevisionVerificationPort;
 import hexarch.dms.verification.domain.DocumentRevisionId;
 import hexarch.dms.verification.domain.RevisionVerification;
@@ -17,33 +19,42 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class QueryRevisionVerificationServiceTest {
+class QueryRevisionPreviewServiceTest {
 
     private static final DocumentRevisionId DOCUMENT_REVISION_ID = new DocumentRevisionId(44L);
 
     @Mock
     private FindRevisionVerificationPort findRevisionVerificationPort;
 
+    @Mock
+    private FindRevisionContentPort findRevisionContentPort;
+
     @InjectMocks
-    private QueryRevisionVerificationService queryRevisionVerificationService;
+    private QueryRevisionPreviewService queryRevisionPreviewService;
 
     @Test
-    public void shouldFindRevisionVerification() {
+    public void shouldFindRevisionPreview() {
         // given
         var user = new User("one");
         var revisionVerification = RevisionVerification.createNew(DOCUMENT_REVISION_ID, user);
         when(findRevisionVerificationPort.findByRevisionId(DOCUMENT_REVISION_ID)).thenReturn(Optional.of(revisionVerification));
+        var title = "title";
+        var content = "content";
+        var revisionContentQueryModel = new RevisionContentQueryModel(title, content);
+        when(findRevisionContentPort.queryBy(DOCUMENT_REVISION_ID)).thenReturn(Optional.of(revisionContentQueryModel));
 
         // when
-        Optional<VerificationRequestModel> verificationRequestModel = queryRevisionVerificationService.queryBy(DOCUMENT_REVISION_ID);
+        Optional<RevisionPreviewQueryModel> revisionPreviewQueryModel = queryRevisionPreviewService.queryBy(DOCUMENT_REVISION_ID);
 
         // then
-        assertThat(verificationRequestModel)
+        assertThat(revisionPreviewQueryModel)
                 .isPresent()
                 .hasValueSatisfying(value -> {
                     assertThat(value.documentRevisionId()).isEqualTo(revisionVerification.getDocumentRevisionId());
                     assertThat(value.verificationStatus()).isEqualTo(revisionVerification.getVerificationStatus());
+                    assertThat(value.title()).isEqualTo(revisionContentQueryModel.title());
+                    assertThat(value.content()).isEqualTo(revisionContentQueryModel.content());
                 });
-    }
 
+    }
 }
