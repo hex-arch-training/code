@@ -52,7 +52,7 @@ class ArchitectureTest {
     static final ArchRule dependenciesBetweenPreparationAndVerificationAreRespected = ArchRuleDefinition
             .noClasses()
             .that()
-            .resideInAnyPackage("..preparation.adapter..")
+            .resideInAnyPackage("..preparation.adapter..", "..preparation.application..")
             .should()
             .dependOnClassesThat()
             .resideInAnyPackage("..verification..");
