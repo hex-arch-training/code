@@ -1,0 +1,22 @@
+@startuml
+!global RELATIVE_INCLUDE = "."
+!include C4_Component.puml
+
+title Hex Arch DMS - Components
+
+Component(configuration, "configuration")
+Component(preparation, "preparation")
+Component(verification, "verification")
+Component(shared, "shared")
+
+Rel(configuration, verification, "import")
+Rel(configuration, preparation, "import")
+Rel(configuration, shared, "import")
+Rel(verification, preparation, "import")
+Rel(verification, shared, "import")
+Rel(preparation, shared, "import")
+
+
+SHOW_LEGEND(false)
+
+@enduml
