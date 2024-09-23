@@ -17,7 +17,7 @@ public class RevisionVerificationRestController {
     private final AcceptRevisionUseCase acceptRevisionUseCase;
 
     @PostMapping("/revision/{revisionId}/accept")
-    public ResponseEntity<Void> createVerificationRequest(@PathVariable Long revisionId) {
+    public ResponseEntity<Void> createVerificationRequest(@PathVariable("revisionId") Long revisionId) {
         acceptRevisionUseCase.apply(new AcceptRevisionCommand(new DocumentRevisionId(revisionId)));
         return ResponseEntity.ok().build();
     }
