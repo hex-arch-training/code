@@ -1,6 +1,6 @@
 package hexarch.dms.preparation.domain.converters;
 
-import javax.persistence.AttributeConverter;
+import jakarta.persistence.AttributeConverter;
 
 public abstract class StringValueObjectConverter<T extends ValueObject<String>> implements AttributeConverter<T, String> {
     @Override

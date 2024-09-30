@@ -2,8 +2,8 @@ package hexarch.dms.preparation.domain.converters;
 
 import hexarch.dms.preparation.domain.RevisionStatus;
 
-import javax.persistence.AttributeConverter;
-import javax.persistence.Converter;
+import jakarta.persistence.AttributeConverter;
+import jakarta.persistence.Converter;
 
 @Converter
 public class RevisionStatusConverter implements AttributeConverter<RevisionStatus, Boolean> {
