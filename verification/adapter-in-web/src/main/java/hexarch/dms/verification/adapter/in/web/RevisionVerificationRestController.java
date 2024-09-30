@@ -21,13 +21,13 @@ public class RevisionVerificationRestController {
     private final QueryRevisionPreviewUseCase queryRevisionPreviewUseCase;
 
     @PostMapping("/revision/{revisionId}/accept")
-    public ResponseEntity<Void> createVerificationRequest(@PathVariable Long revisionId) {
+    public ResponseEntity<Void> createVerificationRequest(@PathVariable("revisionId") Long revisionId) {
         acceptRevisionUseCase.apply(new AcceptRevisionCommand(new DocumentRevisionId(revisionId)));
         return ResponseEntity.ok().build();
     }
 
     @GetMapping("/revision/{revisionId}/preview")
-    public RevisionPreviewBody preview(@PathVariable Long revisionId) {
+    public RevisionPreviewBody preview(@PathVariable("revisionId") Long revisionId) {
         return queryRevisionPreviewUseCase
                 .queryBy(new DocumentRevisionId(revisionId))
                 .map(queryModel -> new RevisionPreviewBody(

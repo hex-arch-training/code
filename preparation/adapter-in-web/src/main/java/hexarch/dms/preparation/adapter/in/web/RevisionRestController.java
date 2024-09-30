@@ -33,13 +33,13 @@ public class RevisionRestController {
     }
 
     @GetMapping("/revision/{revisionId}")
-    public RevisionQueryModel getRevision(@PathVariable Long revisionId) {
+    public RevisionQueryModel getRevision(@PathVariable("revisionId") Long revisionId) {
         return queryRevisionByIdUseCase.queryBy(revisionId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
     @PostMapping("/revision/{revisionId}/requestVerification")
-    public ResponseEntity<Void> requestVerification(@PathVariable Long revisionId) {
+    public ResponseEntity<Void> requestVerification(@PathVariable("revisionId") Long revisionId) {
         requestVerificationUseCase.apply(new RequestVerificationCommand(revisionId));
         return ResponseEntity.ok().build();
     }

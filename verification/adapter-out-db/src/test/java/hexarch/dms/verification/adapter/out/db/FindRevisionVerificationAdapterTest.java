@@ -5,9 +5,9 @@ import hexarch.dms.verification.domain.RevisionVerification;
 import hexarch.dms.verification.domain.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
-import javax.annotation.Resource;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -17,7 +17,7 @@ class FindRevisionVerificationAdapterTest {
 
     private static final DocumentRevisionId DOCUMENT_REVISION_ID = new DocumentRevisionId(44L);
 
-    @Resource
+    @Autowired
     private VerificationRequestRepository repository;
 
     private FindRevisionVerificationAdapter adapter;
