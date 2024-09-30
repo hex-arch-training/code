@@ -2,7 +2,7 @@ package hexarch.dms.preparation.domain.converters;
 
 import hexarch.dms.preparation.domain.DocumentTitle;
 
-import javax.persistence.Converter;
+import jakarta.persistence.Converter;
 
 @Converter
 public class DocumentTitleConverter extends StringValueObjectConverter<DocumentTitle> {
