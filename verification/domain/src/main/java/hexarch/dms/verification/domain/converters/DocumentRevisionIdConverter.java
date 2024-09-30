@@ -2,8 +2,8 @@ package hexarch.dms.verification.domain.converters;
 
 import hexarch.dms.verification.domain.DocumentRevisionId;
 
-import javax.persistence.AttributeConverter;
-import javax.persistence.Converter;
+import jakarta.persistence.AttributeConverter;
+import jakarta.persistence.Converter;
 
 @Converter
 public class DocumentRevisionIdConverter implements AttributeConverter<DocumentRevisionId, Long> {
