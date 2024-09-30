@@ -5,9 +5,9 @@ import hexarch.dms.preparation.domain.Revision;
 import hexarch.dms.preparation.domain.RevisionContent;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
-import javax.annotation.Resource;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -18,7 +18,7 @@ class GetRevisionAdapterTest {
     private static DocumentTitle DOCUMENT_TITLE = new DocumentTitle("title");
     private static RevisionContent REVISION_CONTENT = new RevisionContent("content");
 
-    @Resource
+    @Autowired
     private RevisionRepository repository;
 
     private GetRevisionAdapter adapter;
