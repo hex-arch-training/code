@@ -2,8 +2,8 @@ package hexarch.dms.verification.domain.converters;
 
 import hexarch.dms.verification.domain.User;
 
-import javax.persistence.AttributeConverter;
-import javax.persistence.Converter;
+import jakarta.persistence.AttributeConverter;
+import jakarta.persistence.Converter;
 
 @Converter
 public class UserConverter implements AttributeConverter<User, String> {
