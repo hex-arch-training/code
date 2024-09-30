@@ -21,7 +21,7 @@ public class RevisionRestController {
     }
 
     @GetMapping("/revision/{revisionId}")
-    public RevisionQueryModel getRevision(@PathVariable Long revisionId) {
+    public RevisionQueryModel getRevision(@PathVariable("revisionId") Long revisionId) {
         return queryRevisionByIdUseCase.queryBy(revisionId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
