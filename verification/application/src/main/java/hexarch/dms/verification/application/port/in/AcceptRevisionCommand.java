@@ -1,4 +1,6 @@
 package hexarch.dms.verification.application.port.in;
 
-public record AcceptRevisionCommand() {
+import hexarch.dms.verification.domain.DocumentRevisionId;
+
+public record AcceptRevisionCommand(DocumentRevisionId revisionId) {
 }
