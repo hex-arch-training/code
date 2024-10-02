@@ -1,9 +1,7 @@
 package hexarch.dms.preparation.adapter.in.web;
 
 import hexarch.dms.preparation.application.port.RevisionQueryModel;
-import hexarch.dms.preparation.application.port.in.CreateRevisionCommand;
-import hexarch.dms.preparation.application.port.in.CreateRevisionUseCase;
-import hexarch.dms.preparation.application.port.in.QueryRevisionByIdUseCase;
+import hexarch.dms.preparation.application.port.in.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +20,8 @@ public class RevisionRestController {
 
     private final CreateRevisionUseCase createRevisionUseCase;
 
+    private final RequestVerificationUseCase requestVerificationUseCase;
+
     @PostMapping("/revision")
     public ResponseEntity<String> createRevision(@RequestBody CreateRevisionRequestBody requestBody) {
         var revisionId = createRevisionUseCase.apply(new CreateRevisionCommand(requestBody.documentTitle(), requestBody.revisionContent()));
@@ -36,6 +36,9 @@ public class RevisionRestController {
     }
 
     @PostMapping("/revision/{revisionId}/requestVerification")
-    public void requestVerification() {
+    public void requestVerification(@PathVariable("revisionId") Long revisionId) {
+        requestVerificationUseCase.apply(
+                new RequestVerificationCommand(revisionId)
+        );
     }
 }

@@ -1,4 +1,4 @@
 package hexarch.dms.preparation.application.port.in;
 
-public record RequestVerificationCommand() {
+public record RequestVerificationCommand(long revisionId) {
 }
