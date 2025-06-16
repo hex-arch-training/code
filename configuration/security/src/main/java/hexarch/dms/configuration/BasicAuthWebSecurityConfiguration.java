@@ -4,6 +4,7 @@ import hexarch.dms.verification.application.port.out.GetSecurityContextPort;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
@@ -18,10 +19,10 @@ public class BasicAuthWebSecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .csrf().disable()
+                .csrf(AbstractHttpConfigurer::disable)
                 .authorizeRequests().anyRequest().authenticated()
                 .and()
-                .httpBasic();
+                .httpBasic(httpBasic -> {});
 
         return http.build();
     }
